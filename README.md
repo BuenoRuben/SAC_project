@@ -1,4 +1,4 @@
-# SAC Reward Scale Sensitivity Study (Single README)
+# SAC Reward Scale Sensitivity Study 
 
 This repository implements **Soft Actor-Critic (SAC, 2018 version)** and reproduces the paper’s key empirical message:
 **SAC is sensitive to reward scaling**, and the best reward scale is **environment-dependent**.
@@ -7,7 +7,7 @@ This repository implements **Soft Actor-Critic (SAC, 2018 version)** and reprodu
 
 ---
 
-## 1) What you built (scope)
+## 1) Scope
 
 - SAC implementation (2018 formulation with **Actor**, **Twin Q-functions**, **Value** + **Target Value** network)
 - Off-policy training with a replay buffer
@@ -55,7 +55,7 @@ python -m scripts.plot_multi_sweep
 
 ## 3) How to switch environment
 
-Your environment choice is driven by the YAML config loaded by the training script.
+The environment choice is driven by the YAML config loaded by the training script.
 
 Configs live in `configs/` (examples):
 - `configs/ant_sweep.yaml`
