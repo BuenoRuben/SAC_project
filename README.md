@@ -98,89 +98,9 @@ Best speed knobs on a laptop:
 
 ---
 
-## 6) Recommended experiment plan (close to the SAC paper, realistic on CPU)
 
-### Plan A — “Paper-style” reward scale ablation (best ROI)
-Reproduce the paper’s reward-scale sensitivity plot idea on your env version (e.g., Ant-v5).
 
-Suggested:
-- env: Ant
-- reward_scales: `[1.0, 3.0, 10.0, 30.0, 100.0]`
-- seeds: 3
-- steps: 300k (or 500k if time)
-- eval_interval: 20k
-- eval_episodes: 2 (fast) or 5 (final)
-
-Outcome:
-- a figure strongly aligned with the paper’s ablation
-- clear story: “optimum depends on env + setup”
-
-### Plan B — Add one additional ablation (diversify with minimal code changes)
-Pick ONE of these:
-
-**(B1) Polyak averaging / target update rate**
-- Fix reward_scale (e.g., 10)
-- Sweep `tau`: `[0.001, 0.005, 0.02]`
-
-**(B2) Update-to-data ratio**
-- Fix env + reward_scale (e.g., Ant, 10)
-- Sweep `updates_per_iter`: `[1, 2, 4]`
-- Report both wall-clock speed and learning curves
-
-Outcome:
-- second strong slide beyond reward scaling
-- ties directly to training stability / compute budget
-
-### Plan C — Show environment dependence (simple generalization)
-Run the same reward-scale sweep on one extra env:
-- Hopper (fast) or Walker2d
-
-Outcome:
-- slide comparing Ant vs Hopper showing different optimal scale / different sensitivity
-
----
-
-## 7) Presentation guide (15 min + Q&A)
-
-### Slide structure (suggested)
-1) Motivation (continuous control is hard)
-2) Max-entropy RL objective (reward + entropy)
-3) Soft Bellman backups (conceptual)
-4) SAC architecture (Actor, twin Q, Value + target)
-5) Training loop (replay buffer → batch updates)
-6) Where reward_scale enters (critic target)
-7) Experimental setup (env, scales, seeds, steps, evaluation protocol)
-8) Main result plot(s) + interpretation
-9) Limitations (env version, compute budget, update/data ratio)
-10) Conclusions + link to SAC v2 (automatic temperature tuning)
-
-### Q&A bullets to be ready for
-- Why entropy regularization?
-- Why two Q networks?
-- What does reward_scale do mathematically?
-- Why does best scale differ from the paper?
-- Why is training CPU-bound in MuJoCo?
-
----
-
-## 8) Troubleshooting
-
-### `ModuleNotFoundError: No module named 'sac'`
-Run scripts as modules:
-```bash
-python -m scripts.train_sweep_vec
-```
-
-### Plot uses the wrong run
-Check:
-```bash
-type runs\latest_run.txt
-```
-Then verify the directory exists.
-
----
-
-## 9) Repository structure
+## 6) Repository structure
 
 ```
 SAC_project/
@@ -201,7 +121,7 @@ SAC_project/
 
 ---
 
-## 10) References
+## 7) References
 
 - Haarnoja, T., Zhou, A., Abbeel, P., & Levine, S. (2018).
   **Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor**. ICML 2018.
