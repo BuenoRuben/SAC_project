@@ -16,7 +16,6 @@ Thumbs.db
 .vscode/
 
 # RL outputs
-runs/
 *.pkl
 *.pt
 *.pth
