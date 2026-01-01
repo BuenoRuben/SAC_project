@@ -1,0 +1,30 @@
+env_id: "Humanoid-v4"
+
+total_steps: 10000000
+start_steps: 10000
+
+eval_interval: 20000
+eval_episodes: 5
+
+# Vectorized training (for train_sweep_vec.py)
+num_envs: 4              # Run 4 environments in parallel
+updates_per_iter: 1      # Agent updates per step
+
+# Replay buffer
+replay_size: 1000000
+batch_size: 256
+
+# SAC hyperparameters (from paper Table 1)
+gamma: 0.99
+tau: 0.005
+lr: 0.0003
+hidden: 256
+
+# Paper Table 2:
+reward_scale: 10
+
+# Multi-seed evaluation (reduced for faster experiments)
+seeds: [0, 1, 2]
+
+# For reward scale sweep experiments
+reward_scales: [2.0, 5.0, 10.0]
