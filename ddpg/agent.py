@@ -12,8 +12,8 @@ from .networks import Actor, Critic
 class DDPGConfig:
     gamma: float = 0.99
     tau: float = 0.005
-    actor_lr: float = 1e-3
-    critic_lr: float = 1e-3
+    actor_lr: float = 1e-4
+    critic_lr: float = 1e-4
     hidden: int = 256
     batch_size: int = 256
     reward_scale: float = 1.0
